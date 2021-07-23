@@ -1,6 +1,8 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {USER_LOADED} from '../types';
+// interface UserInterface {
+// }
 
 export const loadUser = uid => {
   return async (dispatch, getState) => {

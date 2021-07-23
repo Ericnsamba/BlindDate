@@ -45,7 +45,7 @@ const ApplicationNavigator = ({navigation}) => {
         if (data._exists) {
           dispatch(loadUser(data._data));
           setFirstName(data._exists);
-          console.log('line 48 ------>', data);
+          // console.log('line 48 ------>', data);
         }
       });
   };
@@ -87,10 +87,10 @@ const ApplicationNavigator = ({navigation}) => {
       </View>
     );
   } else if (userLocal && !firstName) {
-    console.log('line 96 ~ ApplicationNavigator ~ firstName', firstName);
+    // console.log('line 96 ~ ApplicationNavigator ~ firstName', firstName);
     return <SetUserNameScreen />;
   } else if (userLocal && firstName && invitation) {
-    console.log('line 94 ~ ApplicationNavigator ~ firstName', firstName);
+    // console.log('line 94 ~ ApplicationNavigator ~ firstName', firstName);
     return <TabNavigator />;
   }
 

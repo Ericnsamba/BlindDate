@@ -1,4 +1,25 @@
 export default {
+  ProfileStackConfig: {
+    // headerStyle: {
+    //   backgroundColor: '#eaeaea',
+    //   elevation: 0,
+    //   shadowOpacity: 0,
+    // },
+    headerBackground: null,
+    // headerTitleStyle: {
+    //   fontSize: 18,
+    //   maxWidth: 220,
+    //   alignSelf: 'center',
+    // },
+    // headerBackTitleVisible: false,
+    headerLayoutPreset: 'center',
+    // headerTintColor: '#fff',
+    style: {
+      backgroundColor: 'red',
+    },
+    headerRight: null,
+    headerShown: null,
+  },
   LoginStackNavigator: {
     // headerStyle: {
     //   backgroundColor: '#eaeaea',

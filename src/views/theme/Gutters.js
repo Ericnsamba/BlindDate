@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 
 /**
  * Generate Styles depending on MetricsSizes vars availabled at ./theme/Variables
@@ -18,51 +18,43 @@ import { StyleSheet } from 'react-native'
  * @param Theme can be spread like {Colors, NavigationColors, Gutters, Layout, Common, ...args}
  * @return {*}
  */
-export default function ({ MetricsSizes }) {
-  return StyleSheet.create({
-    ...Object.entries(MetricsSizes).reduce(
-      (acc, [key, value]) => ({
-        ...acc,
-        /* Margins */
-        [`${key}BMargin`]: {
-          marginBottom: value,
-        },
-        [`${key}TMargin`]: {
-          marginTop: value,
-        },
-        [`${key}RMargin`]: {
-          marginRight: value,
-        },
-        [`${key}LMargin`]: {
-          marginLeft: value,
-        },
-        [`${key}VMargin`]: {
-          marginVertical: value,
-        },
-        [`${key}HMargin`]: {
-          marginHorizontal: value,
-        },
-        /* Paddings */
-        [`${key}BPadding`]: {
-          paddingBottom: value,
-        },
-        [`${key}TPadding`]: {
-          paddingTop: value,
-        },
-        [`${key}RPadding`]: {
-          paddingRight: value,
-        },
-        [`${key}LPadding`]: {
-          paddingLeft: value,
-        },
-        [`${key}VPadding`]: {
-          paddingVertical: value,
-        },
-        [`${key}HPadding`]: {
-          paddingHorizontal: value,
-        },
-      }),
-      {},
-    ),
-  })
-}
+import MetricsSizes from './Variables';
+
+/* Margins */
+export const BMargin = {
+  // marginBottom: MetricsSizes.regular,
+};
+// export const TMargin = {
+//   marginTop: value,
+// };
+// export const RMargin = {
+//   marginRight: value,
+// };
+// export const LMargin = {
+//   marginLeft: value,
+// };
+// export const VMargin = {
+//   marginVertical: value,
+// };
+// export const HMargin = {
+//   marginHorizontal: value,
+// };
+// /* Paddings */
+// export const BPadding = {
+//   paddingBottom: value,
+// };
+// export const TPadding = {
+//   paddingTop: value,
+// };
+// export const RPadding = {
+//   paddingRight: value,
+// };
+// export const LPadding = {
+//   paddingLeft: value,
+// };
+// export const VPadding = {
+//   paddingVertical: value,
+// };
+// export const HPadding = {
+//   paddingHorizontal: value,
+// };

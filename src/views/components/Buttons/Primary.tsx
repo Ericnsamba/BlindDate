@@ -1,21 +1,22 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-// import * as Theme from '../theme/Theme';
+import * as fonts from '../../theme/Fonts';
+import * as theme from '../../theme/Variables';
 
 export const PrimaryButton = ({title, onPress = () => {}}) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>
     <View style={styles.buttonStyle}>
-      <Text style={styles.title}>{title} </Text>
+      <Text style={[fonts.textRegular, styles.title]}>{title} </Text>
     </View>
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#F7B500',
-    borderRadius: 10,
+    backgroundColor: theme.Colors.primary,
+    borderRadius: 50,
     paddingVertical: 15,
-    width: '80%',
+    width: '100%',
     marginTop: 20,
     alignItems: 'center',
   },
@@ -30,10 +31,10 @@ const styles = StyleSheet.create({
     width: 260,
   },
   title: {
-    // color: Theme.secondaryColors.blue,
     fontSize: 16,
     textAlign: 'center',
     alignItems: 'center',
+    color: theme.Colors.white,
   },
   buttonStyle: {
     justifyContent: 'center',

@@ -13,38 +13,41 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
-  text: '#212529',
-  primary: '#cfcfcf',
-  success: '#28a745',
+  text: '#212527',
+  primary: '#377FD9',
+  success: '#2AC02F',
   error: '#dc3545',
-  blue: '#4187ff',
-}
+  greyLight: '#F6F6F6',
+  grey: '#adb5bd',
+  lightBlue: '#83CBFB',
+  pink: '#FFE2E2',
+};
 
 export const NavigationColors = {
   primary: Colors.primary,
   blue: Colors.blue,
-}
+};
 
 /**
  * FontSize
  */
 export const FontSize = {
-  small: 12,
-  regular: 14,
-  large: 18,
-}
+  small: 14,
+  regular: 16,
+  large: 22,
+};
 
 /**
  * Metrics Sizes
  */
-const tiny = 5 // 10
-const small = tiny * 2 // 10
-const regular = tiny * 3 // 15
-const large = regular * 2 // 30
+const tiny = 5; // 10
+const small = tiny * 2; // 10
+const regular = tiny * 3; // 15
+const large = regular * 2; // 30
 
 export const MetricsSizes = {
   tiny,
   small,
   regular,
   large,
-}
+};

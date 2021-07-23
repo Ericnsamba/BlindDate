@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {HomeStack} from '../Home';
 import {ProfileStack} from '../Profile';
+import {ChatScreen} from '../../views/screens';
 // import {SettingsStack} from '@/navigation/Settings';
 
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,16 @@ export const TabNavigator = () => {
           tabBarLabel: 'Home',
         }}
         component={HomeStack}
+      />
+      <Tab.Screen
+        name="ChatScreen"
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="chatbubble-outline" color={color} size={size} />
+          ),
+          tabBarLabel: 'ChatScreen',
+        }}
+        component={ChatScreen}
       />
       <Tab.Screen
         name="Profile"

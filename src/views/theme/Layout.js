@@ -1,109 +1,106 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 
 /**
  *
  * @param Theme can be spread like {Colors, NavigationColors, Gutters, Layout, Common, ...args}
  * @return {*}
  */
-export default function () {
-  return StyleSheet.create({
-    /* Column Layouts */
-    column: {
-      flexDirection: 'column',
-    },
-    columnReverse: {
-      flexDirection: 'column-reverse',
-    },
-    colCenter: {
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    colVCenter: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    colHCenter: {
-      flexDirection: 'column',
-      justifyContent: 'center',
-    },
-    /* Row Layouts */
-    row: {
-      flexDirection: 'row',
-    },
-    rowReverse: {
-      flexDirection: 'row-reverse',
-    },
-    rowCenter: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    rowVCenter: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
-    rowHCenter: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    /* Example Layouts */
-    center: {
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    alignItemsCenter: {
-      alignItems: 'center',
-    },
-    alignItemsStart: {
-      alignItems: 'flex-start',
-    },
-    alignItemsStretch: {
-      alignItems: 'stretch',
-    },
-    justifyContentCenter: {
-      justifyContent: 'center',
-    },
-    justifyContentAround: {
-      justifyContent: 'space-around',
-    },
-    justifyContentBetween: {
-      justifyContent: 'space-between',
-    },
-    scrollSpaceAround: {
-      flexGrow: 1,
-      justifyContent: 'space-around',
-    },
-    scrollSpaceBetween: {
-      flexGrow: 1,
-      justifyContent: 'space-between',
-    },
-    selfStretch: {
-      alignSelf: 'stretch',
-    },
-    /* Sizes Layouts */
-    fill: {
-      flex: 1,
-    },
-    fullSize: {
-      height: '100%',
-      width: '100%',
-    },
-    fullWidth: {
-      width: '100%',
-    },
-    fullHeight: {
-      height: '100%',
-    },
-    /* Operation Layout */
-    mirror: {
-      transform: [{ scaleX: -1 }],
-    },
-    rotate90: {
-      transform: [{ rotate: '90deg' }],
-    },
-    rotate90Inverse: {
-      transform: [{ rotate: '-90deg' }],
-    },
-  })
-}
+
+/* Column Layouts */
+export const column = {
+  flexDirection: 'column',
+};
+export const columnReverse = {
+  flexDirection: 'column-reverse',
+};
+export const colCenter = {
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+export const colVCenter = {
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+export const colHCenter = {
+  flexDirection: 'column',
+  justifyContent: 'center',
+};
+/* Row Layouts */
+export const row = {
+  flexDirection: 'row',
+};
+export const rowReverse = {
+  flexDirection: 'row-reverse',
+};
+export const rowCenter = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+export const rowVCenter = {
+  flexDirection: 'row',
+  justifyContent: 'center',
+};
+export const rowHCenter = {
+  flexDirection: 'row',
+  alignItems: 'center',
+};
+/* Example Layouts */
+export const center = {
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+export const alignItemsCenter = {
+  alignItems: 'center',
+};
+export const alignItemsStart = {
+  alignItems: 'flex-start',
+};
+export const alignItemsStretch = {
+  alignItems: 'stretch',
+};
+export const justifyContentCenter = {
+  justifyContent: 'center',
+};
+export const justifyContentAround = {
+  justifyContent: 'space-around',
+};
+export const justifyContentBetween = {
+  justifyContent: 'space-between',
+};
+export const scrollSpaceAround = {
+    flexGrow: 1,
+    justifyContent: 'space-around',
+  },
+  scrollSpaceBetween = {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  };
+export const selfStretch = {
+  alignSelf: 'stretch',
+};
+/* Sizes Layouts */
+export const fill = {
+  flex: 1,
+};
+export const fullSize = {
+  height: '100%',
+  width: '100%',
+};
+export const fullWidth = {
+  width: '100%',
+};
+export const fullHeight = {
+  height: '100%',
+};
+/* Operation Layout */
+export const mirror = {
+  transform: [{scaleX: -1}],
+};
+export const rotate90 = {
+  transform: [{rotate: '90deg'}],
+};
+export const rotate90Inverse = {
+  transform: [{rotate: '-90deg'}],
+};

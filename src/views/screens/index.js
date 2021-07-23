@@ -6,3 +6,4 @@ export {default as LastTabScreensMain} from './LastTabScreens/Main';
 export {default as SetUserNameScreen} from './Auth/SetUserNameScreen';
 export {default as SignInScreen} from './Auth/SignInScreen';
 export {default as ProfileScreen} from './ProfileTabScreens/Profile';
+export {default as ChatScreen} from './ChatScreen/Main';
