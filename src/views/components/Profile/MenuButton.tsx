@@ -4,10 +4,18 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 // import * as Theme from '../theme/Theme';
 
-const MenuButton = ({title, iconName, iconSize, onPress = () => {}}) => (
+const MenuButton = ({
+  title,
+  iconName,
+  iconSize,
+  alignSelf,
+  onPress = () => {},
+}) => (
   <View style={styles.container}>
-    <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Icon name={iconName} size={iconSize} />
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.button, {alignSelf: alignSelf}]}>
+      <Icon name={iconName} size={iconSize} alignSelf={alignSelf} />
     </TouchableOpacity>
   </View>
 );
@@ -19,6 +27,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    alignSelf: 'flex-end',
+    // alignSelf: alignSelf,
   },
 });

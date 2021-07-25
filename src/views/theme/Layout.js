@@ -1,10 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 /**
  *
  * @param Theme can be spread like {Colors, NavigationColors, Gutters, Layout, Common, ...args}
  * @return {*}
  */
+
+
 
 /* Column Layouts */
 export const column = {
@@ -88,12 +90,8 @@ export const fullSize = {
   height: '100%',
   width: '100%',
 };
-export const fullWidth = {
-  width: '100%',
-};
-export const fullHeight = {
-  height: '100%',
-};
+export const fullWidth = Dimensions.get('window').width;
+export const fullHeight = Dimensions.get('window').height;
 /* Operation Layout */
 export const mirror = {
   transform: [{scaleX: -1}],

@@ -2,8 +2,9 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   ProfileScreen,
-  //   HomeTabScreensMain,
-  //   HomeTabScreensSecond,
+  ProfileMenu,
+  ProfileInterests,
+  Invites,
 } from '../../views/screens';
 import config from '../config/navigation.config';
 
@@ -13,8 +14,9 @@ export const ProfileStack = () => {
   return (
     <Stack.Navigator screenOptions={config.ProfileStackConfig}>
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      {/* <Stack.Screen name="First" component={HomeTabScreensFirst} />
-      <Stack.Screen name="Second" component={HomeTabScreensSecond} /> */}
+      <Stack.Screen name="ProfileMenu" component={ProfileMenu} />
+      <Stack.Screen name="ProfileInterests" component={ProfileInterests} />
+      <Stack.Screen name="Invites" component={Invites} />
     </Stack.Navigator>
   );
 };

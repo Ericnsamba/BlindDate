@@ -10,6 +10,15 @@ import * as layout from '../../../theme/Layout';
 import * as fonts from '../../theme/Fonts';
 import * as theme from '../../theme/Variables';
 
+interface UserDetailsHeaderProps {
+  navigation: any;
+  route: any;
+  ocupation: string;
+  phoneNumber: string;
+  image: string;
+  username: string;
+}
+
 const UserDetailsHeader = ({
   navigation,
   route,
@@ -18,7 +27,6 @@ const UserDetailsHeader = ({
   image,
   username,
 }) => (
-  /*   console.log('==============>', route);*/
   <View style={styles.container}>
     <View style={styles.imageContainer}>
       <Image src={image} />
