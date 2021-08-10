@@ -11,6 +11,7 @@ import * as theme from '../../../theme/Variables';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MenuButton from '../../../components/Profile/MenuButton';
 import {PrimaryButton} from '../../../components/Buttons/Primary';
+import {SectionGrid, FlatGrid} from 'react-native-super-grid';
 
 const Invites = ({navigation, route}) => (
   <SafeAreaView style={[styles.container]}>

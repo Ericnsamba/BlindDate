@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
 import Icon from 'react-native-vector-icons/Ionicons';
 // import * as Theme from '../theme/Theme';
 
-const MenuButton = ({
-  title,
+interface MenuButtonProps {
+  iconName: string;
+  iconSize: number;
+  alignSelf: string;
+  onPress: any;
+}
+
+const MenuButton: FC<MenuButtonProps> = ({
   iconName,
   iconSize,
   alignSelf,

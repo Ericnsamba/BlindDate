@@ -117,6 +117,7 @@ const Main = ({navigation, route}) => {
       <View style={{}}>
         <Text style={(fonts.textCenter, fonts.titleLarge)}>Main screen</Text>
         <Text style={(fonts.textCenter, fonts.textCenter)}>Main screen</Text>
+        {/* <Button title="Logout" onpress={handlerLogout()} /> */}
       </View>
       <View />
     </View>

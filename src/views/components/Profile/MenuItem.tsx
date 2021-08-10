@@ -12,15 +12,15 @@ import * as fonts from '../../theme/Fonts';
 import * as theme from '../../theme/Variables';
 
 const MenuItem = ({title, iconName, iconSize, onPress = () => {}}) => (
-  <View style={styles.container}>
-    <View style={styles.block}>
-      <Icon name={iconName} size={iconSize} />
-      <Text style={[fonts.textMedium, styles.MenuItemText]}>{title}</Text>
-    </View>
-    <TouchableOpacity onPress={onPress} style={styles.button}>
+  <TouchableOpacity onPress={onPress} style={styles.button}>
+    <View style={styles.container}>
+      <View style={styles.block}>
+        <Icon name={iconName} size={iconSize} />
+        <Text style={[fonts.textMedium, styles.MenuItemText]}>{title}</Text>
+      </View>
       <Icon name="chevron-forward" size={iconSize} />
-    </TouchableOpacity>
-  </View>
+    </View>
+  </TouchableOpacity>
 );
 
 export default MenuItem;
