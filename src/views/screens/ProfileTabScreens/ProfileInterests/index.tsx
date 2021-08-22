@@ -55,7 +55,6 @@ const ProfileInterests: FC = ({navigation}) => {
 
   const onSelectedItemsChange = selectedItems => {
     setUserInterests(selectedItems);
-    // console.log('text=====>', selectedItems);
   };
 
   const addSelectedInterests = () => {
@@ -75,18 +74,8 @@ const ProfileInterests: FC = ({navigation}) => {
     return selectedInterests;
   };
 
-  const CurrentUserInterests = userInterestsData => {
-    // const data = Object.assign({}, userInterests.interests);
-
-    setTimeout(() => {
-      console.log('============>', userInterestsData);
-      const existingInterests = userInterestsData.map((interest, index) => {
-        return (
-          <SelectedInterest text={interest ? interest : ''} uniqueKey={1} />
-        );
-      });
-      return existingInterests;
-    }, 3000);
+  const addedItem = () => {
+    console.log('==================== addedItem');
   };
 
   return (
@@ -102,44 +91,31 @@ const ProfileInterests: FC = ({navigation}) => {
       <Text style={[styles.titleText]}>Update your interests</Text>
 
       <MultiSelect
-        hideTags
         items={interestData}
         uniqueKey="name"
         onSelectedItemsChange={onSelectedItemsChange}
-        // selectedItems={selectedItems}
-        selectText="Pick Items"
-        searchInputPlaceholderText="Search Items..."
+        selectText="Pick Interests"
+        searchInputPlaceholderText="Search Interests..."
         onChangeInput={text => console.log('text=====>', text)}
-        tagRemoveIconColor="#CCC"
-        tagBorderColor="#CCC"
-        tagTextColor="#CCC"
+        tagRemoveIconColor={theme.Colors.blue}
+        tagBorderColor={theme.Colors.blue}
+        tagTextColor={theme.Colors.blue}
         selectedItemTextColor="#CCC"
         selectedItemIconColor="#CCC"
         itemTextColor="#000"
         displayKey="name"
-        searchInputStyle={{color: '#CCC', padding: 15}}
         hideSubmitButton={true}
+        hideDropdown={true}
+        removeSelected={true}
+        hideTags={false}
         selectedItems={userInterests}
-        // submitButtonColor="#48d22b"
-        // submitButtonText="Submit"
+        styleMainWrapper={styles.styleMainWrapper}
+        styleSelectorContainer={styles.styleSelectorContainer}
+        styleTextDropdown={styles.styleTextDropdown}
+        searchInputStyle={styles.searchInputStyle}
+        styleTextTag={styles.styleTextTag}
+        onAddItem={addedItem}
       />
-
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        }}>
-        <RenderSelectedItems />
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        }}>
-        {/* <CurrentUserInterests /> */}
-      </View>
 
       {/* Save or update button */}
       <View style={styles.SaveButton}>
@@ -183,5 +159,29 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+  },
+  styleMainWrapper: {
+    // backgroundColor: 'pink',
+    // color: theme.Colors.primary,
+    padding: 10,
+    borderRadius: 10,
+  },
+  styleSelectorContainer: {
+    // backgroundColor: 'red',
+    // color: 'red',
+  },
+  styleTextDropdown: {
+    //   color: 'red',
+    //   backgroundColor: 'red',
+  },
+  styleTextTag: {
+    color: theme.Colors.blue,
+    // backgroundColor: 'red',
+  },
+  searchInputStyle: {
+    color: 'blue',
+    // backgroundColor: theme.Colors.primary,
+    paddingVertical: 15,
+    fontSize: 16,
   },
 });

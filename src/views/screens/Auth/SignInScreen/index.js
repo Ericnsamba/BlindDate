@@ -40,7 +40,7 @@ const SignInScreen = ({navigation}) => {
   const {name, userData, phoneNumber} = useSelector(state => state.userReducer);
 
   // Declarations
-  const [confirm, setConfirm] = useState(null);
+  const [confirm, setConfirm] = useState(0);
   const [code, setCode] = useState(0);
   const [countryCode, setCountryCode] = useState('');
   const [country, setCountry] = useState(null);
@@ -100,7 +100,7 @@ const SignInScreen = ({navigation}) => {
             firestore()
               .collection('users')
               .doc(userID)
-              .update({
+              .add({
                 phoneNumber: number,
                 userID,
                 number,

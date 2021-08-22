@@ -1,2 +1,3 @@
 export const USER_LOADED = 'USER_LOADED';
 export const USER_INVITATION = 'USER_LOADED';
+export const SET_INVITION_LIST = 'SET_INVITION_LIST';

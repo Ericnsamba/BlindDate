@@ -3,7 +3,11 @@ import {
   SET_PHONE_NUMBER,
   SET_USER_DATA,
 } from '../../actions/user/setUser';
-import {USER_LOADED, USER_INVITATION} from '../../actions/types';
+import {
+  USER_LOADED,
+  USER_INVITATION,
+  SET_INVITION_LIST,
+} from '../../actions/types';
 
 const initialState = {
   name: 'initialState Name',
@@ -24,6 +28,8 @@ function userReducer(state = initialState, action: {type: any; payload: any}) {
       return {...state, phoneNumber: action.payload};
     case SET_USER_DATA:
       return {...state, authUserData: action.payload};
+    case SET_INVITION_LIST:
+      return {...state, inviteListData: action.payload};
     case USER_LOADED:
       return {
         ...state,

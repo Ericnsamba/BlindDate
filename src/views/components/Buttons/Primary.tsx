@@ -1,19 +1,35 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import * as fonts from '../../theme/Fonts';
 import * as theme from '../../theme/Variables';
 
-export const PrimaryButton = ({title, onPress = () => {}}) => (
-  <TouchableOpacity onPress={onPress} style={styles.button}>
-    <View style={styles.buttonStyle}>
-      <Text style={[fonts.textRegular, styles.title]}>{title} </Text>
-    </View>
-  </TouchableOpacity>
+interface ButtonsTypes {
+  title: string;
+  onPress: (event: any) => void;
+}
+
+export const PrimaryButton: FC<ButtonsTypes> = ({
+  title,
+  onPress = () => {},
+}) => (
+  <LinearGradient
+    locations={[0, 1]}
+    start={{x: 1, y: 0}}
+    end={{x: 0, y: 0}}
+    colors={['#FEA7A7', '#167BFA']}
+    style={styles.button}>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.buttonStyle}>
+        <Text style={[fonts.textMedium, styles.title]}>{title} </Text>
+      </View>
+    </TouchableOpacity>
+  </LinearGradient>
 );
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: theme.Colors.primary,
+    // backgroundColor: theme.Colors.primary,
     borderRadius: 50,
     paddingVertical: 15,
     width: '100%',

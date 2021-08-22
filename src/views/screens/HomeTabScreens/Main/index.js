@@ -1,23 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Button, Text, TextInput, View} from 'react-native';
+import {
+  Images,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  SafeAreaView,
+} from 'react-native';
+import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+
+// components
+import {Header} from '../../../components/Home/Header';
 
 //styles
 import * as layout from '../../../theme/Layout';
 import Gutters from '../../../theme/Gutters';
 import * as fonts from '../../../theme/Fonts';
+import * as theme from '../../../theme/Variables';
 
 const Main = ({navigation, route}) => {
   const [currentUserInterests, setCurrentUserInterests] = useState();
   const [matchedUser, setMatchedUser] = useState();
-  const {userData, user, userInvitation} = useSelector(
+  const {userData, user, userInvitation, authUserData} = useSelector(
     state => state.userReducer,
   );
 
   useEffect(() => {
     getUserInterests();
+    console.log({userInvitation, user, userData});
   }, []);
 
   const compareUsersFunction = querySnapshot => {
@@ -67,7 +79,7 @@ const Main = ({navigation, route}) => {
       const match = users.find(obj => {
         return obj.matchedScore === maxMatchedScore;
       });
-      console.log('=======> match', match);
+      // console.log('=======> match', match);
     }
   };
 
@@ -91,17 +103,6 @@ const Main = ({navigation, route}) => {
           .get()
           .then(querySnapshot => {
             compareUsersFunction(querySnapshot);
-            // console.log(
-            //   '======> newDocs',
-            //   newDocs.sort((a, b) =>
-            //     a.matchedScore > b.matchedScore
-            //       ? -1
-            //       : b.matchedScore > a.matchedScore
-            //       ? 1
-            //       : 0,
-            //   ),
-            // );
-            /* ... */
           });
       });
   };
@@ -113,15 +114,27 @@ const Main = ({navigation, route}) => {
   };
 
   return (
-    <View style={[layout.fill, layout.colCenter]}>
-      <View style={{}}>
-        <Text style={(fonts.textCenter, fonts.titleLarge)}>Main screen</Text>
-        <Text style={(fonts.textCenter, fonts.textCenter)}>Main screen</Text>
-        {/* <Button title="Logout" onpress={handlerLogout()} /> */}
+    <SafeAreaView style={[layout.fill, styles.container]}>
+      <View style={[styles.headerContainer]}>
+        <Header
+          userName={authUserData.firstName}
+          image={authUserData.profilePicture}
+        />
       </View>
       <View />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.Colors.white,
+    paddingHorizontal: 210,
+    flex: 1,
+  },
+  headerContainer: {
+    margin: 20,
+  },
+});
 
 export default Main;

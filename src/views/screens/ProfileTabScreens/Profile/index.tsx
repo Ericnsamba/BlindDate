@@ -1,5 +1,15 @@
-import React from 'react';
-import {Text, View, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {FC, useState, useEffect} from 'react';
+import {
+  Text,
+  View,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import {useDispatch, useSelector} from 'react-redux';
 import UserDetailsHeader from '../../../components/Profile/UserDetailsHeader';
 
 //styles
@@ -9,53 +19,103 @@ import * as theme from '../../../theme/Variables';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MenuButton from '../../../components/Profile/MenuButton';
 import {PrimaryButton} from '../../../components/Buttons/Primary';
+import {handlers} from 'react-native-localize/dist/typescript/module';
 
-const ProfileScreen = ({navigation, route}) => (
-  <SafeAreaView style={[styles.container]}>
-    <MenuButton
-      alignSelf="flex-end"
-      iconName="menu-outline"
-      iconSize={38}
-      onPress={() => {
-        navigation.navigate('ProfileMenu');
-      }}
-    />
-    <UserDetailsHeader
-      username="Oliver Name"
-      phoneNumber="+27610575617"
-      ocupation="Designer"
-    />
+interface ProfileScreenTypeDeclaration {
+  navigation: any;
+  route: any;
+  userReducer: any;
+  bioText: any;
+  userID: string;
+}
 
-    {/* bioSection */}
-    <View style={[styles.bioSection]}>
-      <Text style={[fonts.textLeft, fonts.textRegular, styles.bioText]}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-        mollitia, molestiae quas vel sint commodi repudiandae consequuntur
-        voluptatum laborum numquam blanditiis harum quisquam eius sed odit
-        fugiat iusto fuga praesentium optio.
-      </Text>
-      <View style={styles.editBioBox}>
-        <TouchableOpacity onPress={() => {}} style={styles.editBioButton}>
-          <Text style={[fonts.textLeft, fonts.textMedium, styles.editBioText]}>
-            Edit
+let updateBio = (
+  data: Partial<{[x: string]: any}>,
+  userID: string | undefined,
+) => {
+  const dbRef = firestore().doc(`users/${userID}`);
+  if (dbRef) {
+    dbRef.update(data);
+  } else {
+    dbRef.set(data);
+  }
+};
+
+const ProfileScreen: FC<ProfileScreenTypeDeclaration> = ({navigation}) => {
+  const {userData, authUserData} = useSelector(state => state.userReducer);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [bioText, setBioText] = useState(authUserData.bio);
+
+  const handleBioText = () => {
+    const userID = auth().currentUser?.uid;
+    const data = {
+      timeStamp: new Date(),
+      bio: bioText,
+    };
+
+    updateBio(data, userID);
+  };
+  return (
+    <SafeAreaView style={[styles.container]}>
+      <MenuButton
+        alignSelf="flex-end"
+        iconName="menu-outline"
+        iconSize={38}
+        onPress={() => {
+          navigation.navigate('ProfileMenu');
+        }}
+      />
+      <UserDetailsHeader
+        username={authUserData.firstName + ' ' + authUserData.lastName}
+        phoneNumber={authUserData.phoneNumber}
+        ocupation={authUserData.ocupation}
+        imageUrl={authUserData.profilePicture}
+      />
+
+      {/* bioSection */}
+      <View style={[styles.bioSection]}>
+        {isEditing ? (
+          <TextInput
+            value={bioText}
+            onChangeText={value => setBioText(value)}
+            autoFocus
+            onBlur={() => setIsEditing(false)}
+            style={(fonts.textRegular, [styles.textInput])}
+            multiline={true}
+            blurOnSubmit
+          />
+        ) : (
+          <Text
+            style={[fonts.textLeft, fonts.textRegular, styles.bioText]}
+            onPress={() => setIsEditing(true)}>
+            {bioText ? bioText : 'Tap to edit or Add bio'}
           </Text>
-        </TouchableOpacity>
+        )}
+        {/* <View style={styles.editBioBox}>
+          <TouchableOpacity onPress={() => {}} style={styles.editBioButton}>
+            <Text
+              style={[fonts.textLeft, fonts.textMedium, styles.editBioText]}>
+              Edit
+            </Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
-    </View>
 
-    {/* Photos */}
-    <View style={styles.photoSectionContainer}>
-      <View style={styles.photoContainer} />
-      <View style={styles.photoContainer} />
-      <View style={styles.photoContainer} />
-    </View>
+      {/* Photos */}
+      <View style={styles.photoSectionContainer}>
+        <View style={styles.photoContainer} />
+        <View style={styles.photoContainer} />
+        <View style={styles.photoContainer} />
+      </View>
 
-    {/* Save or update button */}
-    <View style={styles.SaveButton}>
-      <PrimaryButton onPress={() => {}} title="Save" />
-    </View>
-  </SafeAreaView>
-);
+      {/* Save or update button */}
+      <View style={styles.SaveButton}>
+        <PrimaryButton onPress={() => handleBioText()} title="Save" />
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -68,6 +128,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.Colors.greyLight,
     padding: 15,
     borderRadius: 10,
+    width: '100%',
+    minHeight: 100,
   },
   bioText: {
     // fontSize: 16,
@@ -83,11 +145,18 @@ const styles = StyleSheet.create({
   editBioText: {
     color: theme.Colors.primary,
     fontSize: 16,
+    width: '100%',
+    backgroundColor: theme.Colors.pink,
+  },
+  textInput: {
+    color: theme.Colors.primary,
+    fontSize: 16,
+    textAlign: 'left',
+    flexWrap: 'wrap',
   },
   //photo section styles
   photoSectionContainer: {
     width: '100%',
-    // backgroundColor: theme.Colors.pink,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 20,

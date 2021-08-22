@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, Text, View, Button, SafeAreaView} from 'react-native';
 import MenuButton from '../../../components/Profile/MenuButton';
 import MenuItem from '../../../components/Profile/MenuItem';
@@ -9,6 +10,7 @@ import * as layout from '../../../theme/Layout';
 
 // const ProfileMenu: React.ComponentType<any> ({ navigation }) {
 const ProfileMenu = ({navigation}) => {
+  const {userData, authUserData} = useSelector(state => state.userReducer);
   return (
     <SafeAreaView style={[layout.fill, styles.container]}>
       <View />
@@ -22,9 +24,10 @@ const ProfileMenu = ({navigation}) => {
           }}
         />
         <UserDetailsHeader
-          username="Leonardo"
-          ocupation="Creative"
-          phoneNumber="1236105756"
+          username={authUserData.firstName + ' ' + authUserData.lastName}
+          phoneNumber={authUserData.phoneNumber}
+          ocupation={authUserData.ocupation}
+          imageUrl={authUserData.profilePicture}
         />
       </View>
       <View style={styles.MenuItemContainer}>

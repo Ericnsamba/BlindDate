@@ -1,15 +1,6 @@
-// export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_USER_DATA = 'SET_USER_DATA';
-
-// export const setName =
-//   (name: string) =>
-//   (dispatch: (arg0: {type: string; payload: any}) => void) => {
-//     dispatch({
-//       type: SET_USER_NAME,
-//       payload: name,
-//     });
-//   };
+import {SET_INVITION_LIST} from '../../actions/types';
 
 export const setPhoneNumber =
   (phoneNumber: any) =>
@@ -26,5 +17,13 @@ export const setUserData =
     dispatch({
       type: SET_USER_DATA,
       payload: authUserData,
+    });
+  };
+export const inviteList =
+  (inviteListData: any) =>
+  (dispatch: (arg0: {type: string; payload: any}) => void) => {
+    dispatch({
+      type: SET_INVITION_LIST,
+      payload: inviteListData,
     });
   };

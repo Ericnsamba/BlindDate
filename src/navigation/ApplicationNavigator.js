@@ -10,14 +10,17 @@ import {useSelector, useDispatch} from 'react-redux';
 import {loadUser} from '../redux/actions/user/loadUser';
 import {UserInvitation} from '../redux/actions/user/userInvitation';
 import {SetUserNameScreen} from '../views/screens';
+import {inviteList, setUserData} from '../redux/actions/user/setUser';
 
 const ApplicationNavigator = ({navigation}) => {
   // Set an initializing state whilst Firebase connects
+  const userID = auth().currentUser?.uid;
+  const dispatch = useDispatch();
   const [initializing, setInitializing] = useState(true);
   const [userLocal, setUserLocal] = useState();
   const [firstName, setFirstName] = useState(false);
   const [invitation, setInvitation] = useState();
-  const dispatch = useDispatch();
+  const invitesCollection = firestore().collection('invites');
   const {userData, user, phoneNumber} = useSelector(state => state.userReducer);
 
   useEffect(() => {
@@ -30,6 +33,7 @@ const ApplicationNavigator = ({navigation}) => {
   // Handle user state changes
   function onAuthStateChanged(user) {
     setUserLocal(user);
+    // dispatch(setUserData(user));
     if (initializing) {
       setInitializing(false);
     }
@@ -42,8 +46,9 @@ const ApplicationNavigator = ({navigation}) => {
       .doc(userID)
       .get()
       .then(data => {
+        // setUserLocal(data);
         if (data._exists) {
-          dispatch(loadUser(data._data));
+          dispatch(setUserData(data._data));
           setFirstName(data._exists);
           // console.log('line 48 ------>', data);
         }
@@ -53,8 +58,7 @@ const ApplicationNavigator = ({navigation}) => {
   const invitsData = () => {
     if (userLocal) {
       const number = auth().currentUser._user.phoneNumber;
-      const userInvitation = firestore()
-        .collection('invites')
+      const userInvitation = invitesCollection
         .doc(number)
         .get()
         .then(inviteList => {
@@ -63,7 +67,18 @@ const ApplicationNavigator = ({navigation}) => {
             dispatch(UserInvitation(inviteList));
             // console.log('userInvitation ------>', inviteList);
           }
-        });
+        })
+        .then(
+          invitesCollection
+            .where('uid', '==', userID)
+            .get()
+            .then(invites => {
+              /* ... */
+              // setInvitionData(querySnapshot);
+              dispatch(inviteList(invites));
+              // console.log('invitesCollectionData inviteList', inviteList._docs.lengthF);
+            }),
+        );
     }
   };
 

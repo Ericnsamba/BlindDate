@@ -1,4 +1,10 @@
 export default {
+  HomeStackConfig: {
+    headerBackground: null,
+    headerBackTitleVisible: false,
+    headerRight: null,
+    headerShown: null,
+  },
   ProfileStackConfig: {
     // headerStyle: {
     //   backgroundColor: '#eaeaea',
@@ -41,7 +47,7 @@ export default {
     headerRight: null,
     headerShown: null,
   },
-  tab: {},
+  TabStackConfig: {},
 
   linking: {
     prefixes: ['https://GameTracker.com/app', 'GameTracker://app'],
@@ -100,5 +106,3 @@ export default {
     },
   },
 };
-// myapp://feed/1
-// https://myapp.com://feed/1

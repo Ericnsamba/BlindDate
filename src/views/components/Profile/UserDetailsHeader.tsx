@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, {FC} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
+import FastImage from 'react-native-fast-image';
+
 import {useDispatch, useSelector} from 'react-redux';
 import user from '../../../redux/reducers/user';
 
@@ -11,25 +13,28 @@ import * as fonts from '../../theme/Fonts';
 import * as theme from '../../theme/Variables';
 
 interface UserDetailsHeaderProps {
-  navigation: any;
-  route: any;
   ocupation: string;
   phoneNumber: string;
-  image: string;
+  imageUrl: string;
   username: string;
 }
 
-const UserDetailsHeader = ({
-  navigation,
-  route,
+const UserDetailsHeader: FC<UserDetailsHeaderProps> = ({
   ocupation,
   phoneNumber,
-  image,
+  imageUrl,
   username,
 }) => (
   <View style={styles.container}>
     <View style={styles.imageContainer}>
-      <Image src={image} />
+      <FastImage
+        style={styles.image}
+        source={{
+          uri: imageUrl,
+          headers: {Authorization: 'someAuthToken'},
+          priority: FastImage.priority.high,
+        }}
+      />
     </View>
     <View style={styles.detailContainer}>
       <Text style={[styles.title, fonts.textCenter, fonts.titleRegular]}>
@@ -53,13 +58,14 @@ const styles = StyleSheet.create({
     // backgroundColor: 'pink',
   },
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     backgroundColor: theme.Colors.grey,
     borderRadius: 100 / 2,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 20,
+    overflow: 'hidden',
   },
   detailContainer: {},
   title: {},
@@ -71,5 +77,10 @@ const styles = StyleSheet.create({
   phoneNumber: {
     color: theme.Colors.grey,
     fontSize: 16,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
 });

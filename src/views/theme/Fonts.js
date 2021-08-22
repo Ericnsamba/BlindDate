@@ -45,7 +45,7 @@ const titleRegular = {
   fontFamily: 'Nunito-Bold',
 };
 const titleLarge = {
-  fontSize: FontSize.large * 2,
+  fontSize: FontSize.large * 2 - 8,
   fontWeight: 'bold',
   color: Colors.text,
   fontFamily: 'Nunito-Bold',

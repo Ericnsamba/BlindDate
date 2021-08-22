@@ -1,9 +1,19 @@
+import {Dimensions} from 'react-native';
+
 /**
  * This file contains the application's variables.
  *
  * Define color, sizes, etc. here instead of duplicating them throughout the components.
  * That allows to change them more easily later on.
  */
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+export const ScreenDimensions = {
+  height: windowHeight,
+  width: windowWidth,
+};
 
 /**
  * Colors
@@ -13,8 +23,8 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
-  text: '#212527',
-  primary: '#377FD9',
+  black: '#333333',
+  blue: '#377FD9',
   success: '#2AC02F',
   error: '#dc3545',
   greyLight: '#F6F6F6',
