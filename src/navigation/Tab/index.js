@@ -18,6 +18,7 @@ import {ProfileStack} from '../Profile';
 import {ChatScreen} from '../../views/screens';
 import config from '../config/navigation.config';
 import * as theme from '../../views/theme/Variables';
+import { ChatStack } from '../chatNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -141,7 +142,7 @@ export const TabNavigator = () => {
         },
       }}>
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="ChatScreen" component={ChatScreen} />
+      <Tab.Screen name="ChatScreen" component={ChatStack} />
       <Tab.Screen name="Profile" component={ProfileStack} />
     </Tab.Navigator>
   );

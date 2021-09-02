@@ -28,8 +28,8 @@ const Main = ({navigation, route}) => {
   );
 
   useEffect(() => {
-    getUserInterests();
-    console.log({userInvitation, user, userData});
+    // getUserInterests();
+    // console.log({userInvitation, user, userData});
   }, []);
 
   const compareUsersFunction = querySnapshot => {

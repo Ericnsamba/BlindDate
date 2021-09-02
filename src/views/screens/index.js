@@ -17,3 +17,5 @@ export {default as Invites} from './ProfileTabScreens/Invites';
 
 //chat
 export {default as ChatScreen} from './ChatScreen/Main';
+export {default as Messages} from './ChatScreen/Messages';
+export {default as Threads} from './ChatScreen/Threads';

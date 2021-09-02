@@ -76,20 +76,7 @@ const Invites: FC<InvitesTypes> = ({navigation, route}) => {
 
     //   // Object.entries(inviteListData._docs),
     // );
-    invitesCollectionData();
   }, []);
-
-  const invitesCollectionData = () => {
-    // // const invitionData =
-    // invitesCollection
-    //   .where('uid', '==', userID)
-    //   .get()
-    //   .then(querySnapshot => {
-    //     /* ... */
-    //     setInvitionData(querySnapshot);
-    //     console.log('invitesCollectionData', querySnapshot._docs);
-    //   });
-  };
 
   const loadContacts = () => {
     Contacts.getAll()

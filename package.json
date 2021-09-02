@@ -38,6 +38,7 @@
     "react-native-fast-image": "^8.3.7",
     "react-native-flipper": "^0.94.1",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-gifted-chat": "^0.12.0-beta-1",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-localize": "^2.1.1",
     "react-native-multiple-select": "^0.5.6",
@@ -56,8 +57,9 @@
     "redux-flipper": "^1.4.2",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "unique-names-generator": "^4.6.0",
     "usetimeout-react-hook": "^0.1.2",
-    "uuidv4": "^6.2.11"
+    "uuidv4": "^6.2.12"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
