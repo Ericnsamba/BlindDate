@@ -9,7 +9,7 @@ export const ChatStack = () => {
   return (
     <Stack.Navigator
       screenOptions={config.ChatStackConfig}
-      initialRouteName="ChatScreen">
+      initialRouteName="Threads">
       <Stack.Screen name="ChatScreen" component={ChatScreen} />
       <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="Threads" component={Threads} />

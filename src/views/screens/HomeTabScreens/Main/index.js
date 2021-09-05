@@ -19,6 +19,7 @@ import * as layout from '../../../theme/Layout';
 import Gutters from '../../../theme/Gutters';
 import * as fonts from '../../../theme/Fonts';
 import * as theme from '../../../theme/Variables';
+import ProfilePopup from '../../../components/ProfilePopup';
 
 const Main = ({navigation, route}) => {
   const [currentUserInterests, setCurrentUserInterests] = useState();
@@ -122,6 +123,15 @@ const Main = ({navigation, route}) => {
         />
       </View>
       <View />
+      <ProfilePopup
+        matchedUserImage="https://images.unsplash.com/photo-1630508709012-307fde16c75a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+        matchedUserName={'Allessadra Briguglio'}
+        matchedUserOccupation={'Social Worker'}
+        matchedUserAge={28}
+        matchedUserBio={
+          'I hate flowers. You’ll never have to buy me flowers. Potatoes chips however…Not gonna lie, pretty good at pub trivia.'
+        }
+      />
     </SafeAreaView>
   );
 };

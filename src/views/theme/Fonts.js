@@ -28,6 +28,16 @@ const textMedium = {
   color: Colors.text,
   fontFamily: 'Nunito-SemiBold',
 };
+const textBold = {
+  fontSize: FontSize.regular,
+  color: Colors.text,
+  fontFamily: 'Nunito-Bold',
+};
+const textExtraBold = {
+  fontSize: FontSize.regular,
+  color: Colors.text,
+  fontFamily: 'Nunito-ExtraBold',
+};
 const textLarge = {
   fontSize: FontSize.large,
   color: Colors.text,
@@ -77,6 +87,8 @@ export {
   textJustify,
   textLeft,
   textRight,
+  textBold,
+  textExtraBold,
 };
 
 // export default function ({FontSize, Colors}) {

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View, Text, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {ThreadRow, Separator} from '../../../components/Threads';
 import {listenToThreads, listenToThreadTracking} from '../../../../firebase';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const isThreadUnread = (thread, threadTracking) => {
   if (
@@ -45,7 +45,8 @@ const Threads = ({navigation}) => {
   useEffect(() => {
     const unsubscribe = listenToThreadTracking().onSnapshot(snapshot => {
       setThreadTracking(snapshot.data() || {});
-      // console.log("🚀 ~ file: index.js ~ line 46 ~ unsubscribe ~ snapshot.data()", snapshot.data())
+      console.log('snapshot.data()', snapshot.data());
+      console.log('threads', threads);
     });
 
     return () => {
@@ -54,21 +55,39 @@ const Threads = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', paddingBottom: 50}}>
-      <FlatList
-        data={threads}
-        keyExtractor={item => item._id}
-        renderItem={({item}) => (
-          <ThreadRow
-            {...item}
-            onPress={() => navigation.navigate('Messages', {thread: item})}
-            unread={isThreadUnread(item, threadTracking)}
+    <>
+      {threads && threads.length > 1 ? (
+        <SafeAreaView
+          style={{flex: 1, backgroundColor: '#fff', paddingBottom: 50}}>
+          <FlatList
+            data={threads}
+            keyExtractor={item => item._id}
+            renderItem={({item}) => (
+              <ThreadRow
+                {...item}
+                onPress={() => navigation.navigate('Messages', {thread: item})}
+                unread={isThreadUnread(item, threadTracking)}
+              />
+            )}
+            ItemSeparatorComponent={() => <Separator />}
           />
-        )}
-        ItemSeparatorComponent={() => <Separator />}
-      />
-    </SafeAreaView>
+        </SafeAreaView>
+      ) : (
+        <SafeAreaView style={styles.container2}>
+          <Text>No active chat vailabble</Text>
+        </SafeAreaView>
+      )}
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  container2: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default Threads;

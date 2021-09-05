@@ -282,12 +282,14 @@ import auth from '@react-native-firebase/auth';
 import {createNewThread} from '../../../../firebase';
 import {TextField, Button} from '../../../components/Form';
 import User from '../../../../store/reducers/User';
+import {firestoreAutoId} from '../../../../utils/firestoreAutoId';
 // export const currentUser = () => auth().currentUser.toJSON();
 
 const ChatScreenMain = ({route, navigation}) => {
   const user = auth().currentUser;
   const [threadName, setThreadName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [AutoId, setAutoId] = useState('');
 
   const handlePress = () => {
     setLoading(true);
@@ -301,7 +303,34 @@ const ChatScreenMain = ({route, navigation}) => {
   };
 
   useEffect(() => {
-    
+    if (AutoId.length < 1) {
+      setAutoId(firestoreAutoId());
+    }
+  }, []);
+
+  const fireTest = () => {
+    console.log('state firestoreAutoId ', AutoId);
+
+    firestore()
+      .collection('cities')
+      .doc(AutoId)
+      .set({
+        name: 'mmmmmmmm',
+        country: 'Japan',
+        ID: AutoId,
+      })
+      .then(docRef => {
+        console.log('Document written with ID: ', docRef);
+        // setAutoId('');
+      })
+      .catch(function (error) {
+        console.error('Error adding document: ', error);
+      });
+  }
+
+  useEffect(() => {
+    // Add a new document with a generated id.
+
     // firestore()
     //   .collection('MESSAGE_THREADS')
     //   .get()
@@ -341,6 +370,7 @@ const ChatScreenMain = ({route, navigation}) => {
         disabled={loading}
       /> */}
       <Button onPress={handlePress} title="Create" disabled={loading} />
+      {/* <Button onPress={fireTest} title="Create" disabled={loading} /> */}
     </View>
   );
 };
